@@ -21,7 +21,7 @@ def GenerateReportVentas(app:App):
             saldo_pendiente DESC;
     """
     df=pd.read_sql_query(query,conn)
-    path=f"/workspaces/workspacepy0125v2/proyecto/files/data-Huerta.csv"
+    path=f"/workspaces/Practica4-Python-Datux/proyecto/files/datafuente.xls"
     df.to_csv(path)
     sendMail(app,path)
 
