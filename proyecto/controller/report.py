@@ -29,7 +29,7 @@ def GenerateReportVentas(app: App):
 
     # Formatear la fecha actual para el nombre del archivo
     fecha = datetime.now().strftime("%Y-%m-%d")
-    folder_path = "/workspaces/Practica4-Python-Datux/proyecto/files"
+    folder_path = "/workspaces/Practica4-Python-Datux/proyecto/files/data.H.csv"
     file_path = f"{folder_path}/reporte_menor_ventas_{fecha}.csv"
 
     # Crear carpeta si no existe
