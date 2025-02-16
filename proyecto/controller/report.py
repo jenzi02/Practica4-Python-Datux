@@ -6,23 +6,21 @@ def GenerateReportVentas(app:App):
     conn=app.bd.getConection()
     query="""
         SELECT 
-            c.categoria,
+            p.pais,
             SUM(v.quantity) AS total_vendido
         FROM 
             VENTAS v
         JOIN 
-             PRODUCTOS p ON v.product_id = p.product_id
-        JOIN 
-            CATEGORIAS c ON p.categoria_id = c.categoria_id
+            POSTALCODE p ON v.postal_code = p.code
         GROUP BY 
-            c.categoria
+            p.pais
         ORDER BY 
-            total_vendido DESC;
-
+                total_vendido ASC
+        LIMIT 1;
     """
     df=pd.read_sql_query(query,conn)
     fecha="08-02"
-    path=f"/workspaces/Practica4-Python-Datux/proyecto/files/data-HuertaCarrasco.csv"
+    path=f"/workspaces/Practica4-Python-Datux/proyecto/files/data-Huerta1.csv"
     df.to_csv(path)
     sendMail(app,path)
 
