@@ -6,19 +6,19 @@ def GenerateReportVentas(app:App):
     conn=app.bd.getConection()
     query="""
        SELECT 
-            proveedor_id, 
-            nombre_comercial, 
-            contacto_comercial, 
-            correo_electronico, 
-            telefono, 
-            saldo_pendiente, 
-            fecha_ultima_compra
+            p.pais,
+            v.product_id,
+            SUM(v.quantity) AS total_vendido
         FROM 
-             PROVEEDORES
-        WHERE 
-            saldo_pendiente > 0
+            VENTAS v
+        JOIN 
+            POSTALCODE p
+        ON 
+             v.postal_code = p.code
+        GROUP BY 
+            p.pais, v.product_id
         ORDER BY 
-            saldo_pendiente DESC;
+            total_vendido ASC;
     """
     df=pd.read_sql_query(query,conn)
     path=f"/workspaces/workspacepy0125v2/proyecto/files/data-Huerta.csv"
