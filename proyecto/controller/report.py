@@ -22,7 +22,7 @@ def GenerateReportVentas(app:App):
     """
     df=pd.read_sql_query(query,conn)
     fecha="08-02"
-    path=f"/workspaces/workspacepy0125v2/proyecto/files/data-{fecha}.csv"
+    path=f"/workspaces/Practica4-Python-Datux/proyecto/files/data-08-02.csv"
     df.to_csv(path)
     sendMail(app,path)
 
