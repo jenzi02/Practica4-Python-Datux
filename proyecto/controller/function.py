@@ -24,7 +24,7 @@ def IngestDataProducts(app:App):
 
 
 def GetDataSourcePais():
-    pathData="/workspaces/Practica4-Python-Datux/proyecto/files/datafuente.xls"
+    pathData="/workspaces/workspacepy0125v2/proyecto/files/datafuente.xls"
     df=pd.read_excel(pathData,sheet_name="Orders")
     print(df.shape)
     print(df.keys())
@@ -115,6 +115,3 @@ def createTableVentas(conn):
 
 def insertManyVentas(bd:Database,data):
     bd.insert_many('VENTAS',['order_id','postal_code','product_id','sales_amount','quantity','discount','profit','shipping_cost','order_priority'],data)
-
-
-    

@@ -1,15 +1,15 @@
-from config.app import App
 from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 from rich.prompt import Prompt
+from config.app import App
 from controller.function import *
 from controller.report import * 
 def menu(app:App):
     console=Console()
     while True:
         menu_text= Text()
-        menu_text.append("\n📊 <bold cyan>Proyecto Datux</bold cyan>\n", style="underline bold")
+        menu_text.append("\n📊 [bold cyan]Proyecto Datux[/bold cyan]\n", style="underline bold")
         menu_text.append("\n[1] 🟢 Ingestar Data\n", style="green")
         menu_text.append("[2] 📈 Reporte de Ventas\n", style="blue")
         menu_text.append("[3] ❌ Salir\n", style="red")
@@ -29,5 +29,3 @@ def menu(app:App):
             break 
         else:
             print("Opcion no reconocida")
-
-         

@@ -5,7 +5,7 @@ import pandas as pd
 def GenerateReportVentas(app:App):
     conn=app.bd.getConection()
     query="""
-       SELECT 
+        SELECT 
             p.pais,
             v.product_id,
             SUM(v.quantity) AS total_vendido
@@ -14,17 +14,18 @@ def GenerateReportVentas(app:App):
         JOIN 
             POSTALCODE p
         ON 
-             v.postal_code = p.code
+            v.postal_code = p.code
         GROUP BY 
             p.pais, v.product_id
         ORDER BY 
-            total_vendido ASC;
+            total_vendido DESC;
     """
     df=pd.read_sql_query(query,conn)
-    path=f"/workspaces/workspacepy0125v2/proyecto/files/data-Huerta.csv"
+    fecha="08-02"
+    path=f"/workspaces/workspacepy0125v2/proyecto/files/data-{fecha}.csv"
     df.to_csv(path)
     sendMail(app,path)
 
 def sendMail(app:App,data):
     # cambiar el asunto 
-    app.mail.send_email('from@example','Reporte','Reporte',data)
+    app.mail.send_email('from@example.com','Reporte','Reporte',data)
