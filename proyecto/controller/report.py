@@ -6,8 +6,8 @@ def GenerateReportVentas(app:App):
     conn=app.bd.getConection()
     query="""
         SELECT 
-            p.pais,
-            SUM(v.quantity) AS total_vendido
+             p.pais, 
+            COALESCE(SUM(v.quantity), 0) AS total_vendido
         FROM 
             VENTAS v
         JOIN 
