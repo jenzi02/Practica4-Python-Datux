@@ -18,11 +18,11 @@ def GenerateReportVentas(app:App):
         GROUP BY 
             p.pais, v.product_id
         ORDER BY 
-            total_vendido DESC;
+            total_vendido ASC;
     """
     df=pd.read_sql_query(query,conn)
     fecha="08-02"
-    path=f"/workspaces/Practica4-Python-Datux/proyecto/files/data-08-02.csv"
+    path=f"/workspaces/Practica4-Python-Datux/proyecto/files/data-Huerta.csv"
     df.to_csv(path)
     sendMail(app,path)
 
