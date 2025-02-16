@@ -7,18 +7,16 @@ def GenerateReportVentas(app:App):
     query="""
         SELECT 
             p.pais,
-            v.product_id,
             SUM(v.quantity) AS total_vendido
         FROM 
             VENTAS v
         JOIN 
-            POSTALCODE p
-        ON 
-            v.postal_code = p.code
+            POSTALCODE p ON v.postal_code = p.code
         GROUP BY 
-            p.pais, v.product_id
+            p.pais
         ORDER BY 
-            total_vendido ASC;
+            total_vendido ASC
+        LIMIT 1;
     """
     df=pd.read_sql_query(query,conn)
     fecha="08-02"
