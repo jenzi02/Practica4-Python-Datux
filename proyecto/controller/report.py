@@ -28,4 +28,4 @@ def GenerateReportVentas(app:App):
 
 def sendMail(app:App,data):
     # cambiar el asunto 
-    app.mail.send_email('from@example.com','Reporte','Reporte',data)
+    app.mail.send_email('from@example.com','Reporte de Ventas', 'Adjunto el reporte de ventas actualizado.', data)
