@@ -6,8 +6,8 @@ def GenerateReportVentas(app:App):
     conn=app.bd.getConection()
     query="""
         SELECT 
-             p.pais, 
-            COALESCE(SUM(v.quantity), 0) AS total_vendido
+            p.pais,
+            SUM(v.quantity) AS total_vendido
         FROM 
             VENTAS v
         JOIN 
@@ -16,7 +16,7 @@ def GenerateReportVentas(app:App):
             p.pais
         ORDER BY 
             total_vendido ASC
-        LIMIT 2;
+        LIMIT 1;
     """
     df=pd.read_sql_query(query,conn)
     fecha="08-02"
